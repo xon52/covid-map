@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store'
+import x5GMaps from 'x5-gmaps'
+
+Vue.use(x5GMaps, {
+  key: process.env.VUE_APP_GOOGLE_KEY,
+  libraries: ['visualization'],
+})
 
 Vue.config.productionTip = false
 
 new Vue({
-  store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#app')

@@ -1,24 +1,13 @@
 # covid-map
 
-## Project setup
-```
-npm install
-```
+![Screenshot](./src/assets/covid-map.png)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### This is an example of making a COVID-19 Map using the [x5-gmaps](https://github.com/xon52/x5-gmaps) plugin for Vue.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### You can read the tutorial on Medium here:
 
-### Lints and fixes files
-```
-npm run lint
-```
+It's meant for beginners learning Vue, people wanting an example of using the x5-gmaps plugin, and those wanting a starting point for their own COVID-19 Map.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Authors
+
+- [Keagan Chisnall](https://github.com/xon52)
