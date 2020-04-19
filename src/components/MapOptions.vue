@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import bus from '../bus.js'
+import { EventBus } from '../bus.js'
 
 export default {
   name: 'MapOPtions',
@@ -22,7 +22,7 @@ export default {
   }),
   watch: {
     type(newVal) {
-      bus.$emit('changeType', newVal)
+      EventBus.$emit('changeType', newVal)
     }
   }
 }

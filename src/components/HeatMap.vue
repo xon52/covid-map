@@ -4,7 +4,7 @@
 
 <script>
 import { gmapsHeatmap } from 'x5-gmaps'
-import bus from '../bus.js'
+import { EventBus } from '../bus.js'
 
 export default {
   name: 'HeatMap',
@@ -34,14 +34,14 @@ export default {
         .then(data => (this.covidDataRaw = data))
         .catch(e => {
           console.error(e)
-          alert('Error retreiving data :(')
+          alert(`Error retreiving world data: ${e.message}`)
           this.covidDataRaw = []
         })
     }
   },
   created() {
     this.getData()
-    bus.$on('changeType', type => (this.type = type))
+    EventBus.$on('changeType', type => (this.type = type))
   }
 }
 </script>
