@@ -13,8 +13,7 @@ import MapOptions from './components/MapOptions'
 
 export default {
   name: 'App',
-  components: { WorldMap, MapOptions },
-  data: () => ({})
+  components: { WorldMap, MapOptions }
 }
 </script>
 

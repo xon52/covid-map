@@ -6,10 +6,34 @@
 import { gmapsHeatmap } from 'x5-gmaps'
 import { EventBus } from '../bus.js'
 
+const getBackup = () =>
+  fetch('https://xon52.github.io/covid-map/backup.json')
+    .then(response => response.json())
+    .then(data => data)
+    .catch(e => {
+      console.error(e)
+      return []
+    })
+
 export default {
   name: 'HeatMap',
   components: { gmapsHeatmap },
   data: () => ({ covidDataRaw: [], type: 'active' }),
+  created() {
+    // Get data
+    fetch('https://covid19.mathdro.id/api/confirmed')
+      .then(response => response.json())
+      .then(data => (this.covidDataRaw = data))
+      .catch(e => {
+        console.error(e)
+        // Backup data for example
+        getBackup()
+          .then(data => (this.covidDataRaw = data))
+          .catch(e => console.error(e))
+      })
+    // Listen for type change
+    EventBus.$on('changeType', type => (this.type = type))
+  },
   computed: {
     items() {
       return this.covidDataRaw.map(e => ({
@@ -26,22 +50,6 @@ export default {
       if (this.type === 'deaths') return ['red', 'black']
       return ['green', 'yellow', 'red']
     }
-  },
-  methods: {
-    getData() {
-      fetch('https://covid19.mathdro.id/api/confirmed')
-        .then(response => response.json())
-        .then(data => (this.covidDataRaw = data))
-        .catch(e => {
-          console.error(e)
-          alert(`Error retreiving world data: ${e.message}`)
-          this.covidDataRaw = []
-        })
-    }
-  },
-  created() {
-    this.getData()
-    EventBus.$on('changeType', type => (this.type = type))
   }
 }
 </script>
